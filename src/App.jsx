@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const years = [
   { id: 1, title: 'First year', detail: 'Build your foundations.', semesters: [1, 2] },
