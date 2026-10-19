@@ -49,3 +49,49 @@
 @keyframes gentleSpin{to{transform:rotate(360deg)}}
 @media(max-width:720px){.hero h1{letter-spacing:-.07em}.year-tab:hover{transform:translateY(-1px)}.semester-card:hover{transform:translateY(-2px)}}
 @media(prefers-reduced-motion:reduce){.hero h1,.hero-kicker,.hero-bottom,.hero-stamp,.browse-section,.semester-card,.catalogue-note,.empty-state,.empty-icon{animation:none!important;filter:none!important}.year-tab,.semester-card,.hero-button,.brand-mark{transition:none!important}}
+
+
+/* Functional dark mode and deeper 3D interaction */
+.top-actions{display:flex;align-items:center;gap:18px}
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #172a2325;border-radius:999px;background:#fbfaf6;color:#172a23;font-size:11px;font-weight:700;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.theme-toggle:hover{transform:translateY(-2px);background:#e8eddb;border-color:#9aa486}
+.theme-icon{font-size:17px;line-height:1}
+.site-shell{perspective:1200px;transform-style:preserve-3d;transition:background .35s,color .35s}
+.year-tab,.semester-card{transform-style:preserve-3d;will-change:transform}
+.year-tab:hover{transform:perspective(700px) rotateX(3deg) rotateY(-3deg) translateY(-4px);box-shadow:0 15px 25px #172a2319}
+.semester-card:hover{transform:perspective(800px) rotateX(4deg) rotateY(-4deg) translateY(-5px) scale(1.012);box-shadow:0 22px 38px #172a2320}
+.semester-card:active,.year-tab:active{transform:perspective(700px) scale(.98)}
+.semester-card-title,.semester-card-top,.semester-card-bottom{transform:translateZ(16px)}
+.tab-number,.tab-text,.tab-arrow{transform:translateZ(10px)}
+/* Theme variables are scoped so switching is instant and reversible */
+.site-shell.dark-mode{--ink:#edf3e7;--muted:#a7b3a2;--line:#293b32;--paper:#17251f;color:#edf3e7;background:radial-gradient(ellipse at 82% 4%,#243b2d 0,transparent 35%),#101914}
+.site-shell.dark-mode .topbar,.site-shell.dark-mode .footer{border-color:#dce8d51a}
+.site-shell.dark-mode .brand-light,.site-shell.dark-mode .topbar-note,.site-shell.dark-mode .hero-bottom p,.site-shell.dark-mode .section-heading>p,.site-shell.dark-mode .semester-total,.site-shell.dark-mode .catalogue-note,.site-shell.dark-mode .footer{color:#a2ad9f}
+.site-shell.dark-mode .hero{border-color:#dce8d51b}
+.site-shell.dark-mode .hero h1 span{color:#c1df83}
+.site-shell.dark-mode .hero-kicker,.site-shell.dark-mode .section-index{color:#b9d48b}
+.site-shell.dark-mode .hero-stamp{border-color:#dce8d53d;color:#b9d48b}
+.site-shell.dark-mode .stamp-star,.site-shell.dark-mode .arrow,.site-shell.dark-mode .note-spark{color:#c4ed72}
+.site-shell.dark-mode .year-tab{background:#17251f;border-color:#34463a;color:#edf3e7}
+.site-shell.dark-mode .year-tab.active{background:#d9ff62;border-color:#d9ff62;color:#15241b;box-shadow:0 8px 24px #d9ff6218}
+.site-shell.dark-mode .year-tab.active .tab-number,.site-shell.dark-mode .year-tab.active .tab-arrow{color:#344b23}
+.site-shell.dark-mode .year-tab.active .tab-text small{color:#536345}
+.site-shell.dark-mode .year-tab:not(.active) .tab-number{color:#c1df83}
+.site-shell.dark-mode .year-tab:not(.active) .tab-text small,.site-shell.dark-mode .tab-arrow{color:#a5b19f}
+.site-shell.dark-mode .semester-card{background:#17251f;border-color:#34463a;color:#edf3e7}
+.site-shell.dark-mode .semester-card:after{background:#24372b}
+.site-shell.dark-mode .semester-card:hover:after,.site-shell.dark-mode .semester-card.selected:after{background:#2e4631}
+.site-shell.dark-mode .semester-card-top,.site-shell.dark-mode .semester-card-top span:last-child{color:#a9b6a3}
+.site-shell.dark-mode .semester-symbol{color:#c1df83}
+.site-shell.dark-mode .empty-state{background:#1b2a21;border-color:#40533f}
+.site-shell.dark-mode .empty-state p{color:#b3c0ac}
+.site-shell.dark-mode .empty-icon{background:#30472e;color:#d9ff62}
+.site-shell.dark-mode .status-label{color:#c1df83}
+.site-shell.dark-mode .theme-toggle{background:#1b2a21;border-color:#435344;color:#edf3e7}
+.site-shell.dark-mode .theme-toggle:hover{background:#293b2d}
+.site-shell.dark-mode .top-link span{border-color:#dce8d53d}
+.site-shell.dark-mode .catalogue-note{border-color:#293b32}
+.site-shell.dark-mode .footer-brand .brand-light{color:#a2ad9f}
+@media(max-width:720px){.top-actions{gap:8px}.theme-toggle{padding:8px 9px;font-size:10px}.top-link{gap:7px}.year-tab:hover{transform:perspective(700px) rotateX(2deg) translateY(-2px)}.semester-card:hover{transform:perspective(800px) rotateX(2deg) translateY(-2px)}}
+@media(max-width:400px){.theme-toggle{gap:5px}.theme-toggle .theme-icon{font-size:15px}.top-actions{gap:6px}}
+@media(prefers-reduced-motion:reduce){.site-shell,.year-tab,.semester-card,.theme-toggle{transition:none!important;transform:none!important}}
