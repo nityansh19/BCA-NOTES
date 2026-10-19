@@ -9,6 +9,15 @@ const semesterOneSubjects = [
   { code: 'HM103', name: 'Indian Knowledge System', short: 'Indian Knowledge System', icon: '✳' },
 ];
 
+const semesterTwoSubjects = [
+  { code: 'CA117', name: 'Data Structure with C', short: 'Data Structures', icon: '[]' },
+  { code: 'CA118', name: 'Principles of Operating System', short: 'Operating Systems', icon: 'OS' },
+  { code: 'CA119', name: 'Fundamentals of Machine Learning with Python', short: 'Machine Learning + Python', icon: 'ML' },
+  { code: 'CA120', name: 'Data Communication and Computer Networks', short: 'Computer Networks', icon: '↔' },
+  { code: 'CA121', name: 'Discrete Mathematical Structure', short: 'Discrete Mathematics', icon: '∑' },
+  { code: 'CA122', name: 'Indian Constitution and Cyber Law', short: 'Constitution & Cyber Law', icon: '§' },
+];
+
 const years = [
   { id: 1, title: 'First year', range: 'SEM 01 — 02', semesters: [1, 2], tag: 'THE FOUNDATIONS' },
   { id: 2, title: 'Second year', range: 'SEM 03 — 04', semesters: [3, 4], tag: 'BUILD YOUR SKILLS' },
@@ -55,15 +64,15 @@ export default function App() {
             </button>)}
           </div>
           {activeSemester && <div className="subjects-panel" id={`semester-${activeSemester}`}>
-            <div className="subjects-panel-heading"><div><span className="section-index">SUBJECT DIRECTORY</span><h4>Semester {String(activeSemester).padStart(2, '0')} subjects</h4></div><span className="subject-count">{activeSemester === 1 ? '06 SUBJECTS' : 'SUBJECTS TO BE ADDED'}</span></div>
-            {activeSemester === 1 ? <div className="subjects-grid">
-              {semesterOneSubjects.map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} onClick={() => setActiveSubject(activeSubject === subject.code ? null : subject.code)}>
+            <div className="subjects-panel-heading"><div><span className="section-index">SUBJECT DIRECTORY</span><h4>Semester {String(activeSemester).padStart(2, '0')} subjects</h4></div><span className="subject-count">{activeSemester === 1 || activeSemester === 2 ? '06 SUBJECTS' : 'SUBJECTS TO BE ADDED'}</span></div>
+            {activeSemester === 1 || activeSemester === 2 ? <div className="subjects-grid">
+              {(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} onClick={() => setActiveSubject(activeSubject === subject.code ? null : subject.code)}>
                 <span className="subject-card-top"><span className="subject-icon">{subject.icon}</span><span className="subject-number">0{index + 1}</span></span>
                 <span className="subject-name">{subject.name}</span>
                 <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Selected' : 'Open subject'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span></span>
               </button>)}
             </div> : <div className="empty-state"><span className="empty-icon">✳</span><div><strong>Subjects for Semester {String(activeSemester).padStart(2, '0')}</strong><p>This semester’s subject list will be added when you share its syllabus.</p></div><span className="status-label">COMING SOON</span></div>}
-            {activeSemester === 1 && activeSubject && <div className="subject-detail"><span className="empty-icon">PDF</span><div><strong>{semesterOneSubjects.find(subject => subject.code === activeSubject)?.name}</strong><p>Subject page is ready for notes. PDFs and unit-wise materials will appear here when you provide them.</p></div><span className="status-label">NOTES COMING SOON</span></div>}
+            {(activeSemester === 1 || activeSemester === 2) && activeSubject && <div className="subject-detail"><span className="empty-icon">PDF</span><div><strong>{(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).find(subject => subject.code === activeSubject)?.name}</strong><p>Subject page is ready for notes. PDFs and unit-wise materials will appear here when you provide them.</p></div><span className="status-label">NOTES COMING SOON</span></div>}
           </div>}
         </div>
         <div className="catalogue-note"><span className="note-spark">✳</span><span>One simple library. All six semesters.</span><span className="note-right">MADE FOR BCA STUDENTS</span></div>
