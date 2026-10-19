@@ -9,13 +9,14 @@ const years = [
 export default function App() {
   const [activeYear, setActiveYear] = useState(1);
   const [activeSemester, setActiveSemester] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
   const selectedYear = years.find((year) => year.id === activeYear);
 
-  return <div className="site-shell" id="top">
+  return <div className={`site-shell ${darkMode ? "dark-mode" : ""}`} id="top">
     <header className="topbar">
       <a className="brand" href="#top" aria-label="BCA Notes home"><span className="brand-mark">b.</span><span>BCA<span className="brand-light">NOTES</span></span></a>
       <span className="topbar-note"><span className="live-dot" /> YOUR STUDY SPACE</span>
-      <a className="top-link" href="#browse">Browse notes <span>↘</span></a>
+      <div className="top-actions"><button className="theme-toggle" type="button" onClick={() => setDarkMode(!darkMode)} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}><span className="theme-icon">{darkMode ? "☀" : "☾"}</span><span>{darkMode ? "Light" : "Dark"} mode</span></button><a className="top-link" href="#browse">Browse notes <span>↘</span></a></div>
     </header>
     <main>
       <section className="hero">
