@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 
+const semesterOneSubjects = [
+  { code: 'LN132', name: 'Communication Skills: Theory and Practices', short: 'Communication Skills', icon: 'Aa' },
+  { code: 'CAIL10', name: 'Computer Fundamentals and C Programming', short: 'Computer Fundamentals & C', icon: '</>' },
+  { code: 'CAI14', name: 'Introduction to IT Industry', short: 'Introduction to IT Industry', icon: 'IT' },
+  { code: 'ES103', name: 'Environmental Studies and Sustainability', short: 'Environmental Studies', icon: '↗' },
+  { code: 'MTI61', name: 'Mathematics for Computer Applications', short: 'Mathematics', icon: '∑' },
+  { code: 'HM103', name: 'Indian Knowledge System', short: 'Indian Knowledge System', icon: '✳' },
+];
+
 const years = [
   { id: 1, title: 'First year', range: 'SEM 01 — 02', semesters: [1, 2], tag: 'THE FOUNDATIONS' },
   { id: 2, title: 'Second year', range: 'SEM 03 — 04', semesters: [3, 4], tag: 'BUILD YOUR SKILLS' },
@@ -10,6 +19,7 @@ export default function App() {
   const [activeYear, setActiveYear] = useState(1);
   const [activeSemester, setActiveSemester] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [activeSubject, setActiveSubject] = useState(null);
   const selectedYear = years.find((year) => year.id === activeYear);
 
   return <div className={`site-shell ${darkMode ? "dark-mode" : ""}`} id="top">
@@ -31,20 +41,30 @@ export default function App() {
       <section className="browse-section" id="browse">
         <div className="section-heading"><div><span className="section-index">01 / YOUR COURSE</span><h2>Choose your semester</h2></div><p>Pick a year to get started.</p></div>
         <div className="year-tabs" role="tablist" aria-label="BCA year">
-          {years.map((year) => <button key={year.id} role="tab" aria-selected={activeYear === year.id} className={`year-tab ${activeYear === year.id ? 'active' : ''}`} onClick={() => { setActiveYear(year.id); setActiveSemester(null); }}>
+          {years.map((year) => <button key={year.id} role="tab" aria-selected={activeYear === year.id} className={`year-tab ${activeYear === year.id ? 'active' : ''}`} onClick={() => { setActiveYear(year.id); setActiveSemester(null); setActiveSubject(null); }}>
             <span className="tab-number">0{year.id}</span><span className="tab-text"><strong>{year.title}</strong><small>{year.range}</small></span><span className="tab-arrow">↗</span>
           </button>)}
         </div>
         <div className="semester-area">
           <div className="semester-heading"><div><span className="section-index">{selectedYear.tag}</span><h3>{selectedYear.title}</h3></div><span className="semester-total">0{selectedYear.semesters[0]} <i>—</i> 0{selectedYear.semesters[1]}</span></div>
           <div className="semester-grid">
-            {selectedYear.semesters.map((semester, index) => <button key={semester} className={`semester-card ${activeSemester === semester ? 'selected' : ''}`} onClick={() => setActiveSemester(activeSemester === semester ? null : semester)}>
+            {selectedYear.semesters.map((semester, index) => <button key={semester} className={`semester-card ${activeSemester === semester ? 'selected' : ''}`} onClick={() => { setActiveSemester(activeSemester === semester ? null : semester); setActiveSubject(null); }}>
               <span className="semester-card-top"><span>SEMESTER</span><span>0{index + 1}</span></span>
               <span className="semester-card-title">Semester {String(semester).padStart(2, '0')}</span>
               <span className="semester-card-bottom"><span>{activeSemester === semester ? 'Selected' : 'View notes'} <span className="arrow">↗</span></span><span className="semester-symbol">✳</span></span>
             </button>)}
           </div>
-          {activeSemester && <div className="empty-state"><span className="empty-icon">✳</span><div><strong>Notes for Semester {String(activeSemester).padStart(2, '0')}</strong><p>We’re organising the subjects and notes for this semester. The catalogue will appear here once it’s ready.</p></div><span className="status-label">COMING SOON</span></div>}
+          {activeSemester && <div className="subjects-panel" id={`semester-${activeSemester}`}>
+            <div className="subjects-panel-heading"><div><span className="section-index">SUBJECT DIRECTORY</span><h4>Semester {String(activeSemester).padStart(2, '0')} subjects</h4></div><span className="subject-count">{activeSemester === 1 ? '06 SUBJECTS' : 'SUBJECTS TO BE ADDED'}</span></div>
+            {activeSemester === 1 ? <div className="subjects-grid">
+              {semesterOneSubjects.map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} onClick={() => setActiveSubject(activeSubject === subject.code ? null : subject.code)}>
+                <span className="subject-card-top"><span className="subject-icon">{subject.icon}</span><span className="subject-number">0{index + 1}</span></span>
+                <span className="subject-name">{subject.name}</span>
+                <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Selected' : 'Open subject'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span></span>
+              </button>)}
+            </div> : <div className="empty-state"><span className="empty-icon">✳</span><div><strong>Subjects for Semester {String(activeSemester).padStart(2, '0')}</strong><p>This semester’s subject list will be added when you share its syllabus.</p></div><span className="status-label">COMING SOON</span></div>}
+            {activeSemester === 1 && activeSubject && <div className="subject-detail"><span className="empty-icon">PDF</span><div><strong>{semesterOneSubjects.find(subject => subject.code === activeSubject)?.name}</strong><p>Subject page is ready for notes. PDFs and unit-wise materials will appear here when you provide them.</p></div><span className="status-label">NOTES COMING SOON</span></div>}
+          </div>}
         </div>
         <div className="catalogue-note"><span className="note-spark">✳</span><span>One simple library. All six semesters.</span><span className="note-right">MADE FOR BCA STUDENTS</span></div>
       </section>
