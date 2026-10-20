@@ -243,3 +243,5 @@
 @media(max-width:850px){.dedicated-year-tabs{grid-template-columns:1fr}.dedicated-year-card{min-height:0}.dedicated-semester-links{grid-template-columns:repeat(2,minmax(0,1fr))}.dedicated-subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.inner-page-content{width:calc(100% - 36px);padding:30px 0 55px}.inner-page-heading{padding-bottom:25px;margin-bottom:24px}.inner-page-heading .back-link{margin-bottom:25px}.inner-page-heading p{font-size:13px}.dedicated-subject-grid{grid-template-columns:1fr}.dedicated-subject-grid .subject-card{min-height:180px}.dedicated-year-card{padding:20px}.dedicated-semester-links{grid-template-columns:1fr}.subject-page-summary{align-items:flex-start;flex-wrap:wrap;padding:18px}.subject-page-summary .status-label{margin-left:70px}.semester-page-banner{padding:22px}.inner-page-shell .topbar-note{display:none}}
 @media(prefers-reduced-motion:reduce){.inner-page-heading,.semester-page-banner{animation:none!important}.inner-page-heading .back-link,.dedicated-semester-links button{transition:none!important}}
+
+.home-shell .browse-section{display:none}
