@@ -141,3 +141,40 @@
 .site-shell.dark-mode .brand-mark{background:linear-gradient(145deg,#294a35,#101d17)}.site-shell.dark-mode .hero-visual .visual-orbit{border-color:#c5e49c28}.site-shell.dark-mode .visual-glow{background:radial-gradient(circle,#d9ff6238,#c4d9a412 45%,transparent 70%)}.site-shell.dark-mode .book-front{background:linear-gradient(145deg,#294a35,#0c1711 75%)}.site-shell.dark-mode .float-chip{background:#17251fdd;border-color:#a8c38c45;color:#edf3e7}.site-shell.dark-mode .float-chip span{background:#30472e;color:#d9ff62}.site-shell.dark-mode .hero-stamp{background:#132219c9}.site-shell.dark-mode .hero h1 span{background:linear-gradient(100deg,#c1df83,#d9ff62 50%,#9fca79);-webkit-background-clip:text;background-clip:text;color:transparent}.site-shell.dark-mode .semester-card{background:linear-gradient(145deg,#1a2b21,#14221a)}.site-shell.dark-mode .semester-card:after{background:radial-gradient(circle,#2e4631 0,#24372b 68%,transparent 70%)}.site-shell.dark-mode .year-tab.active{background:linear-gradient(130deg,#d9ff62,#b9e85a);color:#15241b}
 @keyframes glowBreathe{0%,100%{transform:scale(.92);opacity:.72}50%{transform:scale(1.08);opacity:1}}@keyframes orbitDrift{from{rotate:0deg}to{rotate:360deg}}@keyframes bookHoverFront{0%,100%{transform:rotate(8deg) rotateY(-12deg) translate3d(0,0,36px)}50%{transform:rotate(5deg) rotateY(-7deg) translate3d(0,-11px,48px)}}@keyframes bookHoverBack{0%,100%{transform:rotate(-13deg) rotateY(-17deg) translate3d(0,0,-18px)}50%{transform:rotate(-9deg) rotateY(-10deg) translate3d(0,-7px,-8px)}}@keyframes bookShine{0%,55%,100%{transform:translateX(-120%)}72%{transform:translateX(120%)}}@keyframes chipFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(1deg)}}@keyframes sparkPulse{0%,100%{transform:scale(.8) rotate(0);opacity:.55}50%{transform:scale(1.2) rotate(35deg);opacity:1}}
 @media(max-width:900px){.hero-visual{right:-60px;opacity:.78;transform:scale(.85);transform-origin:top right}.hero h1{max-width:610px}.hero-bottom{max-width:570px}.hero-stamp{right:24px;top:28px}}@media(max-width:720px){.hero{padding-top:53px;min-height:590px}.hero-visual{top:245px;right:50%;transform:translateX(50%) scale(.78);transform-origin:top center;opacity:.95;width:390px}.hero h1{font-size:clamp(56px,10.7vw,76px);max-width:100%}.hero-proof{font-size:7px;letter-spacing:.7px;flex-wrap:wrap}.hero-bottom{position:relative;z-index:3;margin-top:15px}.hero-stamp{top:28px;right:21px;width:65px;height:65px}.hero-stamp span{font-size:6px}.hero-stamp .stamp-star{font-size:15px}.hero-button{max-width:100%}.browse-section{padding-top:45px}.section-heading h2{font-size:28px}.book-front{width:184px;height:236px}.book-back{width:148px;height:192px}}@media(max-width:400px){.hero{min-height:560px;padding-left:19px;padding-right:19px}.hero h1{font-size:52px}.hero-visual{top:252px;transform:translateX(50%) scale(.68)}.hero-stamp{opacity:.55}.hero-proof{max-width:255px;line-height:1.7}.section-heading h2{font-size:24px}}@media(prefers-reduced-motion:reduce){.hero-visual *,.hero-proof{animation:none!important}.floating-book{transform:none!important}}
+
+/* Interactive semester quest cards */
+.year-tabs{perspective:1100px}
+.year-tab{position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.year-tab:hover{transform:translateY(-4px);box-shadow:0 16px 30px #172a2318}
+.tab-text{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.year-tag{display:inline-flex;margin-top:5px;padding:4px 7px;border-radius:5px;background:#eaf0db;color:#617548;font:700 8px 'DM Mono',monospace;letter-spacing:.9px}
+.year-tab.active .year-tag{background:#d9ff62;color:#203321}
+.semester-heading h3{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
+.heading-aside{font:500 12px 'DM Mono',monospace;color:#87917f}
+.semester-grid{perspective:1200px}
+.semester-card{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .3s}
+.semester-card:before{content:"";position:absolute;inset:0;background:linear-gradient(125deg,#d9ff6212,transparent 43%,#ffffff0a);opacity:0;transition:opacity .3s;pointer-events:none}
+.semester-card:hover{transform:translateY(-6px) rotateX(2deg);box-shadow:0 22px 38px #172a231b;border-color:#b7cc88}
+.semester-card:hover:before,.semester-card.selected:before{opacity:1}
+.semester-card.selected{transform:translateY(-3px);border-color:#b6d76c;box-shadow:0 0 0 2px #d9ff6240,0 18px 35px #172a2318}
+.semester-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:22px}
+.level-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid #cbd8b7;border-radius:6px;background:#f3f7e9;color:#586f3d;font:700 8px 'DM Mono',monospace;letter-spacing:1px}
+.level-dot{width:6px;height:6px;border-radius:50%;background:#9cc64d;box-shadow:0 0 0 3px #d9ff6250}
+.semester-card-index{font:9px 'DM Mono',monospace;letter-spacing:.8px;color:#929b88}
+.semester-card-title{position:relative;z-index:1;letter-spacing:-1.1px!important;line-height:1.06!important;max-width:260px}
+.semester-subtitle{display:block;margin-top:10px;color:#7d8875;font-size:11px}
+.level-track{height:4px;width:100%;overflow:hidden;margin-top:19px;border-radius:9px;background:#e4e9db}
+.level-track>span{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#8ca85e,#d9ff62);box-shadow:0 0 12px #c4e87870;transition:width .7s ease}
+.semester-card:hover .level-track>span{box-shadow:0 0 16px #b3d65b90}
+.semester-card-bottom{margin-top:auto;padding-top:19px}
+.semester-symbol{display:grid;place-items:center;width:30px;height:30px;border:1px solid #dbe3ce;border-radius:10px;transition:transform .3s,background .3s,color .3s}
+.semester-card:hover .semester-symbol{transform:rotate(45deg);background:#d9ff62;color:#203321;border-color:#d9ff62}
+.site-shell.dark-mode .year-tag{background:#273b2c;color:#c2d9a0}
+.site-shell.dark-mode .year-tab.active .year-tag{background:#d9ff62;color:#203321}
+.site-shell.dark-mode .heading-aside{color:#9cac91}
+.site-shell.dark-mode .level-pill{background:#243629;border-color:#496044;color:#d9e8c7}
+.site-shell.dark-mode .semester-card-index,.site-shell.dark-mode .semester-subtitle{color:#a0af98}
+.site-shell.dark-mode .level-track{background:#2b3a2e}
+.site-shell.dark-mode .semester-symbol{border-color:#405440}
+@media(max-width:720px){.year-tab:hover,.semester-card:hover{transform:translateY(-3px)}.semester-card-top{margin-bottom:18px}.heading-aside{display:block;margin-top:5px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.year-tab,.semester-card,.level-track>span,.semester-symbol{transition:none!important}}
