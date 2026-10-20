@@ -40,7 +40,14 @@ const years = [
 ];
 
 export default function App() {
-  const [pagePath, setPagePath] = useState(window.location.pathname);\n  const navigate = (path) => { window.history.pushState({}, '', path); setPagePath(path); window.scrollTo({ top: 0, behavior: 'smooth' }); };\n  useEffect(() => { const onPop = () => setPagePath(window.location.pathname); window.addEventListener('popstate', onPop); return () => window.removeEventListener('popstate', onPop); }, []);\n  const route = pagePath.match(/^\\/semester\\/(\\d+)$/);\n  const subjectRoute = pagePath.match(/^\\/subject\\/([A-Za-z0-9]+)$/);\n  const routeSemester = route ? Number(route[1]) : null;\n  const routeSubject = subjectRoute ? [...semesterOneSubjects, ...semesterTwoSubjects].find(item => item.code === subjectRoute[1]) : null;\n  const [activeYear, setActiveYear] = useState(1);
+  const [pagePath, setPagePath] = useState(window.location.pathname);
+  const navigate = (path) => { window.history.pushState({}, '', path); setPagePath(path); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  useEffect(() => { const onPop = () => setPagePath(window.location.pathname); window.addEventListener('popstate', onPop); return () => window.removeEventListener('popstate', onPop); }, []);
+  const route = pagePath.match(/^\/semester\/(\d+)$/);
+  const subjectRoute = pagePath.match(/^\/subject\/([A-Za-z0-9]+)$/);
+  const routeSemester = route ? Number(route[1]) : null;
+  const routeSubject = subjectRoute ? [...semesterOneSubjects, ...semesterTwoSubjects].find(item => item.code === subjectRoute[1]) : null;
+  const [activeYear, setActiveYear] = useState(1);
   const [activeSemester, setActiveSemester] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [activeSubject, setActiveSubject] = useState(null);
