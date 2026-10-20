@@ -84,6 +84,38 @@ export default function App() {
         <div className="hero-stamp" aria-hidden="true"><span>LESS</span><span>STRESS</span><span className="stamp-star">✳</span></div>
         <div className="hero-visual" aria-hidden="true"><div className="visual-orbit orbit-one"></div><div className="visual-orbit orbit-two"></div><div className="visual-glow"></div><div className="floating-book book-back"><span className="book-line"></span><span className="book-line short"></span><span className="book-symbol">∑</span></div><div className="floating-book book-front"><span className="book-label">BCA / NOTES</span><span className="book-title">Make room<br/>for the<br/>aha! moment.</span><span className="book-line"></span><span className="book-line short"></span><span className="book-footer">CRAM LESS • GET IT</span></div><div className="float-chip chip-one"><span>✳</span> 6 semesters. One hub.</div><div className="float-chip chip-two"><span>↗</span> Your next topic →</div><div className="visual-spark spark-one">✦</div><div className="visual-spark spark-two">✳</div></div>
       </section>
+      <section className="home-showcase" aria-label="Why BCA Notes">
+        <div className="home-proof-strip">
+          <div className="proof-stat"><strong>06</strong><span>SEMESTERS</span></div>
+          <div className="proof-divider"></div>
+          <div className="proof-stat"><strong>01</strong><span>STUDY SPACE</span></div>
+          <div className="proof-divider"></div>
+          <div className="proof-stat"><strong>∞</strong><span>ROOM TO LEARN</span></div>
+          <div className="proof-note">MADE FOR THE WAY STUDENTS ACTUALLY STUDY <span>↗</span></div>
+        </div>
+        <div className="home-feature-intro">
+          <div><span className="section-index">LESS CHAOS. MORE CLARITY.</span><h2>Your degree,<br/><em>minus the mess.</em></h2></div>
+          <p>Everything starts with your semester. Find a subject, follow its units, and keep your study resources in one calm, organised place.</p>
+        </div>
+        <div className="home-feature-grid">
+          <article className="home-feature-card feature-card-large">
+            <div className="feature-card-top"><span className="feature-number">01 / FIND</span><span className="feature-icon">⌕</span></div>
+            <div className="feature-graphic graphic-stack"><span className="stack-sheet sheet-back">SEMESTER 02</span><span className="stack-sheet sheet-mid">SUBJECTS <b>06</b></span><span className="stack-sheet sheet-front"><i>↗</i> Your next topic</span></div>
+            <h3>Get to the right subject, faster.</h3><p>No endless group-chat scrolling. Jump from year to semester to the subject you actually need.</p>
+          </article>
+          <article className="home-feature-card">
+            <div className="feature-card-top"><span className="feature-number">02 / LEARN</span><span className="feature-icon">↗</span></div>
+            <div className="feature-graphic graphic-units"><span>UNIT 01 <b>✓</b></span><span>UNIT 02 <b>↗</b></span><span>UNIT 03 <b>＋</b></span><span className="unit-progress"><i></i></span></div>
+            <h3>Break big topics into small wins.</h3><p>Follow a unit-by-unit roadmap and build a study routine that feels manageable.</p>
+          </article>
+          <article className="home-feature-card">
+            <div className="feature-card-top"><span className="feature-number">03 / PREP</span><span className="feature-icon">✳</span></div>
+            <div className="feature-graphic graphic-note"><span className="note-lines"></span><span className="note-highlight">KEY CONCEPT</span><span className="note-lines short"></span><span className="note-check">✓</span></div>
+            <h3>Make revision feel less chaotic.</h3><p>A home for notes, important questions, and resources as they’re added.</p>
+          </article>
+        </div>
+        <div className="home-bottom-cta"><div><span className="section-index">YOUR NEXT CHAPTER STARTS HERE</span><h2>Ready to find your<br/>study flow?</h2></div><button className="hero-button" onClick={() => navigate('/browse')}>Explore semesters <span>↗</span></button><span className="cta-orbit" aria-hidden="true">✳</span></div>
+      </section>
       <section className="browse-section" id="browse">
         <div className="section-heading"><div><span className="section-index">01 / CHOOSE YOUR ADVENTURE</span><h2>Where are you in the BCA multiverse?</h2></div><p>Pick your level. Let’s make this degree feel less like a boss fight.</p></div>
         <div className="year-tabs" role="tablist" aria-label="BCA year">
