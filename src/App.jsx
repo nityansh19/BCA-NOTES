@@ -30,6 +30,8 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSubject, setActiveSubject] = useState(null);
   const selectedYear = years.find((year) => year.id === activeYear);
+  const knownSemesterCount = (semester) => semester === 1 || semester === 2 ? 6 : null;
+  const semesterLabel = (semester) => knownSemesterCount(semester) ? '6 subjects unlocked' : 'Subject list in progress';
 
   return <div className={`site-shell ${darkMode ? "dark-mode" : ""}`} id="top">
     <header className="topbar">
@@ -49,19 +51,21 @@ export default function App() {
         <div className="hero-visual" aria-hidden="true"><div className="visual-orbit orbit-one"></div><div className="visual-orbit orbit-two"></div><div className="visual-glow"></div><div className="floating-book book-back"><span className="book-line"></span><span className="book-line short"></span><span className="book-symbol">∑</span></div><div className="floating-book book-front"><span className="book-label">BCA / NOTES</span><span className="book-title">Make room<br/>for the<br/>aha! moment.</span><span className="book-line"></span><span className="book-line short"></span><span className="book-footer">CRAM LESS • GET IT</span></div><div className="float-chip chip-one"><span>✳</span> 6 semesters. One hub.</div><div className="float-chip chip-two"><span>↗</span> Your next topic →</div><div className="visual-spark spark-one">✦</div><div className="visual-spark spark-two">✳</div></div>
       </section>
       <section className="browse-section" id="browse">
-        <div className="section-heading"><div><span className="section-index">01 / YOUR COURSE</span><h2>Where are you in the BCA multiverse?</h2></div><p>Choose your year. Your subjects are waiting.</p></div>
+        <div className="section-heading"><div><span className="section-index">01 / CHOOSE YOUR ADVENTURE</span><h2>Where are you in the BCA multiverse?</h2></div><p>Pick your level. Let’s make this degree feel less like a boss fight.</p></div>
         <div className="year-tabs" role="tablist" aria-label="BCA year">
           {years.map((year) => <button key={year.id} role="tab" aria-selected={activeYear === year.id} className={`year-tab ${activeYear === year.id ? 'active' : ''}`} onClick={() => { setActiveYear(year.id); setActiveSemester(null); setActiveSubject(null); }}>
-            <span className="tab-number">0{year.id}</span><span className="tab-text"><strong>{year.title}</strong><small>{year.range}</small></span><span className="tab-arrow">↗</span>
+            <span className="tab-number">0{year.id}</span><span className="tab-text"><strong>{year.title}</strong><small>{year.range}</small><span className="year-tag">{year.id === 1 ? "START HERE" : year.id === 2 ? "POWER UP" : "FINAL LEVEL"}</span></span><span className="tab-arrow">↗</span>
           </button>)}
         </div>
         <div className="semester-area">
-          <div className="semester-heading"><div><span className="section-index">{selectedYear.tag}</span><h3>{selectedYear.title}</h3></div><span className="semester-total">0{selectedYear.semesters[0]} <i>—</i> 0{selectedYear.semesters[1]}</span></div>
+          <div className="semester-heading"><div><span className="section-index">{selectedYear.tag}</span><h3>{selectedYear.title} <span className="heading-aside">/ choose your next quest</span></h3></div><span className="semester-total">0{selectedYear.semesters[0]} <i>—</i> 0{selectedYear.semesters[1]}</span></div>
           <div className="semester-grid">
             {selectedYear.semesters.map((semester, index) => <button key={semester} className={`semester-card ${activeSemester === semester ? 'selected' : ''}`} onClick={() => { setActiveSemester(activeSemester === semester ? null : semester); setActiveSubject(null); }}>
-              <span className="semester-card-top"><span>SEMESTER</span><span>0{index + 1}</span></span>
-              <span className="semester-card-title">Semester {String(semester).padStart(2, '0')}</span>
-              <span className="semester-card-bottom"><span>{activeSemester === semester ? 'Selected' : 'View notes'} <span className="arrow">↗</span></span><span className="semester-symbol">✳</span></span>
+              <span className="semester-card-top"><span className="level-pill"><span className="level-dot"></span> LEVEL 0{semester}</span><span className="semester-card-index">0{index + 1} / 02</span></span>
+              <span className="semester-card-title">{semester === 1 ? "The foundations." : semester === 2 ? "The skill tree." : semester === 3 ? "The next chapter." : semester === 4 ? "The upgrade." : semester === 5 ? "The endgame." : "The final level."}</span>
+              <span className="semester-subtitle">Semester {String(semester).padStart(2, '0')} · {semesterLabel(semester)}</span>
+              <span className="level-track" aria-hidden="true"><span style={{ width: knownSemesterCount(semester) ? '100%' : '34%' }} /></span>
+              <span className="semester-card-bottom"><span>{activeSemester === semester ? 'Quest selected ✓' : 'Explore subjects'} <span className="arrow">↗</span></span><span className="semester-symbol">{activeSemester === semester ? "✦" : "＋"}</span></span>
             </button>)}
           </div>
           {activeSemester && <div className="subjects-panel" id={`semester-${activeSemester}`}>
