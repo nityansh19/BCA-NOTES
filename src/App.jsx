@@ -108,7 +108,7 @@ export default function App() {
               {(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} aria-expanded={activeSubject === subject.code} onClick={() => navigate(`/subject/${subject.code}`)}>
                 <span className="subject-card-top"><span className="subject-icon">{subject.icon}</span><span className="subject-number">0{index + 1}</span></span>
                 <span className="subject-name">{subject.name}</span>
-                <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Close subject' : 'View units & resources'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span>
+                <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Close subject' : 'View units & resources'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span></span>
               </button>)}
             </div> : <div className="empty-state"><span className="empty-icon">✳</span><div><strong>Subjects for Semester {String(activeSemester).padStart(2, '0')}</strong><p>This semester’s subject list will be added when you share its syllabus.</p></div><span className="status-label">COMING SOON</span></div>}
             {(activeSemester === 1 || activeSemester === 2) && activeSubject && <section className="subject-detail-page" aria-live="polite">
