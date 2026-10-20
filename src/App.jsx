@@ -18,6 +18,21 @@ const semesterTwoSubjects = [
   { code: 'CA122', name: 'Indian Constitution and Cyber Law', short: 'Constitution & Cyber Law', icon: '§' },
 ];
 
+const subjectUnits = {
+  LN132: ['Communication basics and the communication process', 'Listening, speaking and presentation skills', 'Reading comprehension and vocabulary', 'Professional writing and workplace communication'],
+  CAIL10: ['Computer fundamentals and number systems', 'Problem-solving, algorithms and flowcharts', 'C programming fundamentals, operators and control flow', 'Arrays, functions, pointers and structures'],
+  CAI14: ['Introduction to the IT industry', 'Computer hardware, software and operating systems', 'IT services, careers and professional practices', 'Emerging technologies and industry trends'],
+  ES103: ['Environment, ecosystems and biodiversity', 'Natural resources and sustainability', 'Pollution, climate change and environmental issues', 'Environmental protection and sustainable development'],
+  MTI61: ['Fundamentals of sets, relations and functions', 'Algebra and mathematical techniques', 'Matrices and determinants', 'Core mathematical methods for computer applications'],
+  HM103: ['Introduction to Indian Knowledge Systems', 'Knowledge traditions and classical literature', 'Science, mathematics and technology in India', 'Contemporary relevance and applications'],
+  CA117: ['Introduction to data structures and algorithm analysis', 'Arrays, linked lists, stacks and queues', 'Trees, graphs and traversal techniques', 'Searching, sorting and hashing'],
+  CA118: ['Operating-system fundamentals and architecture', 'Processes, threads and CPU scheduling', 'Memory management and virtual memory', 'File systems, I/O and deadlock basics'],
+  CA119: ['Python foundations for machine learning', 'Data handling, cleaning and visualisation', 'Machine-learning concepts and model workflow', 'Introductory supervised and unsupervised learning'],
+  CA120: ['Data communication fundamentals and transmission media', 'Network models, topologies and protocols', 'IP addressing, routing and switching basics', 'Transport, application protocols and network security'],
+  CA121: ['Logic, propositions and proof techniques', 'Sets, relations and functions', 'Combinatorics and recurrence relations', 'Graphs, trees and discrete structures'],
+  CA122: ['Constitutional foundations and key institutions', 'Fundamental rights, duties and governance', 'Cyber law and the legal framework', 'Digital rights, cyber offences and responsible technology']
+};
+
 const years = [
   { id: 1, title: 'First year', range: 'SEM 01 — 02', semesters: [1, 2], tag: 'LEVEL 01: THE STARTER PACK' },
   { id: 2, title: 'Second year', range: 'SEM 03 — 04', semesters: [3, 4], tag: 'LEVEL 02: SKILL UP' },
@@ -71,13 +86,15 @@ export default function App() {
           {activeSemester && <div className="subjects-panel" id={`semester-${activeSemester}`}>
             <div className="subjects-panel-heading"><div><span className="section-index">SUBJECT DIRECTORY</span><h4>Semester {String(activeSemester).padStart(2, '0')} subjects</h4></div><span className="subject-count">{activeSemester === 1 || activeSemester === 2 ? '06 SUBJECTS' : 'SUBJECTS TO BE ADDED'}</span></div>
             {activeSemester === 1 || activeSemester === 2 ? <div className="subjects-grid">
-              {(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} onClick={() => setActiveSubject(activeSubject === subject.code ? null : subject.code)}>
+              {(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).map((subject, index) => <button key={subject.code} id={`subject-${subject.code}`} className={`subject-card ${activeSubject === subject.code ? 'subject-active' : ''}`} aria-expanded={activeSubject === subject.code} onClick={() => setActiveSubject(activeSubject === subject.code ? null : subject.code)}>
                 <span className="subject-card-top"><span className="subject-icon">{subject.icon}</span><span className="subject-number">0{index + 1}</span></span>
                 <span className="subject-name">{subject.name}</span>
-                <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Selected' : 'Open subject'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span></span>
+                <span className="subject-card-bottom"><span>{activeSubject === subject.code ? 'Close subject' : 'View units & resources'} <span className="arrow">↗</span></span><span className="subject-code">{subject.code}</span>
               </button>)}
             </div> : <div className="empty-state"><span className="empty-icon">✳</span><div><strong>Subjects for Semester {String(activeSemester).padStart(2, '0')}</strong><p>This semester’s subject list will be added when you share its syllabus.</p></div><span className="status-label">COMING SOON</span></div>}
-            {(activeSemester === 1 || activeSemester === 2) && activeSubject && <div className="subject-detail"><span className="empty-icon">PDF</span><div><strong>{(activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).find(subject => subject.code === activeSubject)?.name}</strong><p>Subject page is ready for notes. PDFs and unit-wise materials will appear here when you provide them.</p></div><span className="status-label">NOTES COMING SOON</span></div>}
+            {(activeSemester === 1 || activeSemester === 2) && activeSubject && <section className="subject-detail-page" aria-live="polite">
+              {(() => { const subject = (activeSemester === 1 ? semesterOneSubjects : semesterTwoSubjects).find(item => item.code === activeSubject); return <><div className="subject-detail-hero"><div className="subject-detail-icon">{subject.icon}</div><div className="subject-detail-copy"><span className="section-index">SUBJECT WORKSPACE / {subject.code}</span><h5>{subject.name}</h5><p>Your subject, broken into manageable units. Open a unit to start organising your revision.</p></div><span className="status-label">WORKSPACE READY</span></div><div className="unit-list-heading"><div><span className="section-index">THE LEARNING PATH</span><h6>Unit-by-unit roadmap</h6></div><span className="unit-count">{(subjectUnits[subject.code] || []).length} UNITS</span></div><div className="unit-list">{(subjectUnits[subject.code] || []).map((unit, unitIndex) => <details className="unit-accordion" key={unitIndex}><summary><span className="unit-number">0{unitIndex + 1}</span><span className="unit-title-wrap"><strong>Unit {unitIndex + 1}</strong><small>{unit}</small></span><span className="unit-open-icon">＋</span></summary><div className="unit-content"><p>Use this space for your class notes, key definitions, diagrams and exam questions for this unit.</p><div className="resource-placeholder"><span className="resource-file-icon">PDF</span><span><strong>Study materials</strong><small>Upload or add the real notes for this unit to make them available here.</small></span><span className="resource-status">AWAITING NOTES</span></div><div className="resource-placeholder"><span className="resource-file-icon">✎</span><span><strong>Revision notes & questions</strong><small>Quick summaries, important questions and practice can live here.</small></span><span className="resource-status">PLANNED</span></div></div></details>)}</div><p className="workspace-disclaimer">Unit titles are a starter roadmap, not verified syllabus text. We’ll align these with your official syllabus and attach actual PDFs when you share them.</p></>; })()}
+            </section>}
           </div>}
         </div>
         <div className="catalogue-note"><span className="note-spark">✳</span><span>Your degree is a journey. Your notes should be easy to find.</span><span className="note-right">BUILT FOR BCA LIFE</span></div>
