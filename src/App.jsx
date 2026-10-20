@@ -33,19 +33,20 @@ export default function App() {
 
   return <div className={`site-shell ${darkMode ? "dark-mode" : ""}`} id="top">
     <header className="topbar">
-      <a className="brand" href="#top" aria-label="BCA Notes home"><span className="brand-mark">b.</span><span>BCA<span className="brand-light">NOTES</span></span></a>
+      <a className="brand" href="#top" aria-label="BCA Notes home"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 10c5-2 10-1 14 2v18c-4-3-9-4-14-2z" fill="#d9ff62"/><path d="M34 10c-5-2-10-1-14 2v18c4-3 9-4 14-2z" fill="#f7ffe9"/><path d="M20 12v18M10 15l6 1M10 19l6 1M24 16l6-1M24 20l6-1" stroke="#55733b" strokeWidth="1.4" strokeLinecap="round"/></svg></span><span>BCA<span className="brand-light">NOTES</span></span></a>
       <span className="topbar-note"><span className="live-dot" /> YOUR STUDY SPACE</span>
       <div className="top-actions"><button className="theme-toggle" type="button" onClick={() => setDarkMode(!darkMode)} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}><span className="theme-icon">{darkMode ? "☀" : "☾"}</span><span>{darkMode ? "Light" : "Dark"} mode</span></button><a className="top-link" href="#browse">Browse notes <span>↘</span></a></div>
     </header>
     <main>
       <section className="hero">
         <div className="hero-kicker"><span>THE BCA NOTES LIBRARY</span><span className="kicker-line" /></div>
-        <h1>Less searching.<br /><span>More studying.</span></h1>
+        <h1>Less searching.<br /><span>More studying.</span></h1><div className="hero-proof"><span className="proof-dot"></span> YOUR BCA JOURNEY, BEAUTIFULLY ORGANISED <span className="proof-line"></span></div>
         <div className="hero-bottom">
           <p>Your BCA notes, organised by year and semester.<br className="desktop-break" /> Find what you need and get straight to learning.</p>
           <a className="hero-button" href="#browse">Find my notes <span>↓</span></a>
         </div>
         <div className="hero-stamp" aria-hidden="true"><span>STUDY</span><span>SMARTER</span><span className="stamp-star">✳</span></div>
+        <div className="hero-visual" aria-hidden="true"><div className="visual-orbit orbit-one"></div><div className="visual-orbit orbit-two"></div><div className="visual-glow"></div><div className="floating-book book-back"><span className="book-line"></span><span className="book-line short"></span><span className="book-symbol">∑</span></div><div className="floating-book book-front"><span className="book-label">BCA / NOTES</span><span className="book-title">Your next<br/>Aha! moment.</span><span className="book-line"></span><span className="book-line short"></span><span className="book-footer">LEARN • BUILD • GROW</span></div><div className="float-chip chip-one"><span>✳</span> 6 semesters</div><div className="float-chip chip-two"><span>↗</span> Find your focus</div><div className="visual-spark spark-one">✦</div><div className="visual-spark spark-two">✳</div></div>
       </section>
       <section className="browse-section" id="browse">
         <div className="section-heading"><div><span className="section-index">01 / YOUR COURSE</span><h2>Choose your semester</h2></div><p>Pick a year to get started.</p></div>
@@ -78,6 +79,6 @@ export default function App() {
         <div className="catalogue-note"><span className="note-spark">✳</span><span>One simple library. All six semesters.</span><span className="note-right">MADE FOR BCA STUDENTS</span></div>
       </section>
     </main>
-    <footer className="footer"><a className="brand footer-brand" href="#top"><span className="brand-mark">b.</span><span>BCA<span className="brand-light">NOTES</span></span></a><span>Study better, one page at a time.</span><span>© {new Date().getFullYear()} BCA NOTES</span></footer>
+    <footer className="footer"><a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 10c5-2 10-1 14 2v18c-4-3-9-4-14-2z" fill="#d9ff62"/><path d="M34 10c-5-2-10-1-14 2v18c4-3 9-4 14-2z" fill="#f7ffe9"/><path d="M20 12v18M10 15l6 1M10 19l6 1M24 16l6-1M24 20l6-1" stroke="#55733b" strokeWidth="1.4" strokeLinecap="round"/></svg></span><span>BCA<span className="brand-light">NOTES</span></span></a><span>Study better, one page at a time.</span><span>© {new Date().getFullYear()} BCA NOTES</span></footer>
   </div>;
 }
